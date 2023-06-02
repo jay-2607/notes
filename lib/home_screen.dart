@@ -1,12 +1,11 @@
-import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
-import 'package:hive/hive.dart';
 import 'package:hive_flutter/adapters.dart';
 import 'package:notes/models/notes_model.dart';
-
 import 'boxes/boxes.dart';
 
 class HomeScreen extends StatefulWidget {
+  const HomeScreen({super.key});
+
   @override
   State<StatefulWidget> createState() {
     return HomeScreenState();
@@ -22,7 +21,7 @@ class HomeScreenState extends State<HomeScreen> {
     return Scaffold(
       appBar: AppBar(
         centerTitle: true,
-        title: Text("Hive database"),
+        title: const Text("Hive database"),
       ),
       body: ValueListenableBuilder<Box<NotesModel>>(
         valueListenable: Boxes.getData().listenable(),
@@ -44,12 +43,12 @@ class HomeScreenState extends State<HomeScreen> {
                           children: [
                             Text(
                               data[index].title.toString(),
-                              style: TextStyle(
+                              style: const TextStyle(
                                   fontSize: 20, fontWeight: FontWeight.w500),
                             ),
-                            Spacer(),
+                            const Spacer(),
                             InkWell(
-                              child: Icon(
+                              child: const Icon(
                                 Icons.delete,
                                 color: Colors.redAccent,
                               ),
@@ -57,11 +56,11 @@ class HomeScreenState extends State<HomeScreen> {
                                 delete(data[index]);
                               },
                             ),
-                            SizedBox(
+                            const SizedBox(
                               width: 15,
                             ),
                             InkWell(
-                              child: Icon(
+                              child: const Icon(
                                 Icons.edit,
                                 color: Colors.green,
                               ),
@@ -75,7 +74,7 @@ class HomeScreenState extends State<HomeScreen> {
                           ],
                         ),
                         Text(data[index].description.toString(),
-                            style: TextStyle(fontSize: 13)),
+                            style: const TextStyle(fontSize: 13)),
                       ],
                     ),
                   ),
@@ -87,7 +86,7 @@ class HomeScreenState extends State<HomeScreen> {
         onPressed: () async {
           _showMyDialog();
         },
-        child: Icon(Icons.add),
+        child: const Icon(Icons.add),
       ),
     );
   }
@@ -105,7 +104,7 @@ class HomeScreenState extends State<HomeScreen> {
         context: context,
         builder: (context) {
           return AlertDialog(
-            title: Text("Edit Notes"),
+            title: const Text("Edit Notes"),
             content: SingleChildScrollView(
               child: Column(
                 children: [
@@ -118,7 +117,7 @@ class HomeScreenState extends State<HomeScreen> {
                       ),
                     ),
                   ),
-                  SizedBox(
+                  const SizedBox(
                     height: 10,
                   ),
                   TextFormField(
@@ -140,7 +139,7 @@ class HomeScreenState extends State<HomeScreen> {
                     titleEditingController.clear();
                     descriptionEditingController.clear();
                   },
-                  child: Text("Cancel")),
+                  child: const Text("Cancel")),
               TextButton(
                   onPressed: () {
                     notesModel.title = titleEditingController.text.toString();
@@ -154,7 +153,7 @@ class HomeScreenState extends State<HomeScreen> {
 
                     Navigator.pop(context);
                   },
-                  child: Text("Add")),
+                  child: const Text("Add")),
             ],
           );
         });
@@ -165,7 +164,8 @@ class HomeScreenState extends State<HomeScreen> {
         context: context,
         builder: (context) {
           return AlertDialog(
-            title: Text("Add Notes"),
+
+            title: const Text("Add Notes"),
             content: SingleChildScrollView(
               child: Column(
                 children: [
@@ -178,7 +178,7 @@ class HomeScreenState extends State<HomeScreen> {
                       ),
                     ),
                   ),
-                  SizedBox(
+                  const SizedBox(
                     height: 10,
                   ),
                   TextFormField(
@@ -198,7 +198,7 @@ class HomeScreenState extends State<HomeScreen> {
                   onPressed: () {
                     Navigator.pop(context);
                   },
-                  child: Text("Cancel")),
+                  child: const Text("Cancel")),
               TextButton(
                   onPressed: () {
                     final data = NotesModel(
@@ -216,7 +216,7 @@ class HomeScreenState extends State<HomeScreen> {
 
                     Navigator.pop(context);
                   },
-                  child: Text("Add")),
+                  child: const Text("Add")),
             ],
           );
         });
